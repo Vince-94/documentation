@@ -1,0 +1,278 @@
+\part{Filesystem}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%% Package %%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Package}
+    
+        The package is the smallest unit that is possible to build in ROS and the main unit for organizing software, which can contain:
+        \begin{itemize}
+            \item ROS runtime processes (nodes)
+            \begin{itemize}
+                \item scripts: contains executables python scripts
+                \item src: contains C++ cource code
+                \item include: contains headers and libraries needed
+                \item launch: contains launch files
+            \end{itemize}    
+            \item ROS-dependent libraries (dependencies)
+            \begin{itemize}
+                \item msg: custom messages structure definition
+                \item src: custom services structure definition
+                \item action: custom actions structure definition
+                \item config: configuration files
+            \end{itemize}    
+            \item Configuration files
+            \begin{itemize}
+                \item package.xml: manifest file
+                \item CMakeLists.txt: CMake build file
+            \end{itemize}
+            \item Anything else that is usefully organized together
+        \end{itemize}    
+
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{shell}
+catkin_ws
+  /src
+    /pkg_name
+      /config
+        file.config
+      /include
+        /pkg_name
+          header.h
+      /scripts
+        node.py
+      /src
+        node.cpp
+      /launch
+        node.launch
+      /msg
+        message.msg
+      /srv
+        message.srv
+      /param
+        message.param
+      /action
+        message.action
+      package.xml
+      CMakeLists.txt
+\end{minted}
+
+
+
+
+    
+        \subsection{package.xml}
+            The package manifest provides metadata about a package, including its name, version, description, license information, dependencies, and other meta information like exported packages.
+    
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
+<package format="2">
+
+  <name>pkg_name</name>
+  <version>1.2.4</version>
+  <description>pkg_description</description>
+  <maintainer email="maintainer_email">maintainer_name</maintainer>
+  <license>[sw license]</license>
+  <url>http://ros.org/wiki/pkg_name</url>
+  <author>author_name</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+
+  <depend>...</depend>
+
+</package>
+\end{minted}
+    
+    
+    
+        \subsection{CMakeLists.txt}
+            The CmakeLists file describes the build instructions for the Cmake.
+
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
+########## Informations ##########
+cmake_minimum_required()
+project(pkg_name)
+
+# Compiler
+set(CMAKE_BUILD_TYPE "Release")
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX14)
+
+if(COMPILER_SUPPORTS_CXX14)
+    set(CMAKE_CXX_FLAGS "-std=c++14")
+elseif(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "-std=c++11")
+else()
+    message(FATAL_ERROR "No C++11 support")
+endif()
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
+
+
+########## Dependencies ##########
+find_package(catkin REQUIRED COMPONENTS 
+  rospy
+  roscpp
+  ...
+)
+
+
+########## Catkin specific configuration ##########
+catkin_package(
+  DEPENDS rospy roscpp ...
+  CATKIN_DEPENDS rospy roscpp ...
+)
+
+include_directories(
+  include 
+  ${catkin_INCLUDE_DIRS}
+)
+
+\end{minted}
+
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%% Data Structure %%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Data Structure}
+    
+        The message data structure is the specific format used to compose messages:
+        \begin{itemize}
+            \item .msg – topic data structure
+            \item .srv – service data structure
+            \item .action – action data structure
+        \end{itemize}
+        
+        
+        \subsection{Creating message package}
+        
+            It is always suggested to create a separate package containing all the custom messages created:
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
+catkin create pkg msg_dep -c rospy roscpp message_generation actionlib actionlib_msgs ...
+\end{minted}
+            with the following architecture:
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{shell}
+catkin_ws
+  /src
+    /pkg_name
+      /msg
+        message.msg
+      /srv
+        message.srv
+      /param
+        message.param
+      /action
+        message.action
+      package.xml
+      CMakeLists.txt
+\end{minted}
+        
+        
+        \subsection{msgs data structure}
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{python}
+# defining topic message
+message_type message_name
+\end{minted}
+        
+        \subsection{srv data structure}
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{python}
+# defining request message
+request_type request_name
+---
+# defining response message
+response_type response_name
+\end{minted}
+
+        \subsection{action data structure}
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{python}
+# defining topic message
+# goal definition
+goal_type goal_name
+---
+# result definition
+result_type result_name
+---
+# feedback
+feedback_type feedback_name
+\end{minted}
+        
+
+        \subsection{CMakeLists.txt}
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{shell}
+find_package(catkin REQUIRED COMPONENTS
+  rospy
+  roscpp
+  message_generation
+  actionlib_msgs
+)
+
+# Messages data structure
+add_message_files(
+  DIRECTORY msg
+  FILES message.msg
+)
+
+# Services data structure
+add_service_files(
+  DIRECTORY srv
+  FILES message.srv
+)
+
+# Actions data structure
+add_action_files(
+  DIRECTORY action 
+  FILES massage.action
+)
+
+generate_messages(
+  DEPENDENCIES ...
+  actionlib_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS rospy roscpp message_runtime actionlib_msgs
+)
+\end{minted}
+
+
+        \subsection{package.xml}
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
+<build_depend>message_generation</build_depend>
+<build_export_depend>message_runtime</build_export_depend>
+<exec_depend>message_runtime</exec_depend>
+<depend>actionlib</depend>
+<depend>actionlib_msgs</depend>
+\end{minted}
+
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%% Dependencies %%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Dependencies}
+        
+        Python modules and C++ libraries are dependencies that can be imported in any other package in the workspace.
+        
+        
+        \subsection{Python modules}
+        
+        
+        
+        \subsection{C++ libraries}
+        
+        
+        
+        
+        
+        
+        

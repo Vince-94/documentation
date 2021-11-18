@@ -1,0 +1,43 @@
+\part{Introduction}
+
+    \section{Definition}
+        ROS is an open-source, meta-operating system for robotic systems, providing:
+        \begin{itemize}
+            \item hardware abstraction
+            \item low-level device control
+            \item implementation of commonly used functionality
+            \item message-passing between processes
+            \item package management
+            \item tools and libraries for obtaining, building, writing, and running code across multiple computers
+        \end{itemize}
+        The purpose of ROS is:
+        \begin{itemize}
+            \item Support code reusability in robotics research and development
+            \item Thin: code written for ROS can be used with other robot software frameworks
+            \item ROS-agnostic libraries: the preferred development model is to write ROS-agnostic libraries with clean functional interfaces
+            \item Language independence: implementation in different programming language (most used C++ and Phyton)
+            \item Easy testing: built-in unit/integration test framework called rostest
+            \item Scaling: ROS is appropriate for large runtime systems and for large development processes.
+        \end{itemize}
+
+
+    \section{Description} 
+        ROS is a distributed framework of processes called nodes which enable executables to be individually designed and loosely coupled at runtime. 
+        Communication between nodes is implemented by means of topics, services, actions and parameters, for each of which is defined a data structure. 
+        Messages can be recorded through bag functionality which allows to reproduce offline them. The launch functionality allows to run multiple nodes 
+        simultaneously and settings their parameters. This represents the \textbf{\emph{computational graph level}}. \\
+        \\
+        Nodes and in general anything that is useful to organize together, are organized into packages, which are the smallest unit that is possible to 
+        build in ROS, fulfilling a defined function and defined by their own configurational files. This is the base of the \textbf{\emph{filesystem level}}. 
+        Packages can be grouped into stacks, which can be built as packages in a nested framework. Furthermore, within packages can be defined message structures. \\
+        \\
+        ROS features are accessible via code through \textbf{\emph{client libraries}}, allowing to implement nodes in different coding languages. Actually, 
+        the most supported are C++ (roscpp) and Python (rospy), alongside LISP (roslisp) and Matlab/Simulink. \\
+        \\
+        The \textbf{\emph{community level}} is the essence of ROS. Packages and stacks can be shared across the ROS community through a federated system 
+        of online repositories. \\
+        \\
+        Furthermore, a \textbf{\emph{higher-level architecture}} is necessary to build larger systems on top of ROS.
+
+
+            
