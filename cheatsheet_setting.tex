@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Fonts
+\usepackage[english]{babel}
+
+% List
+\usepackage{enumitem}
+
+% Layout
+\usepackage{multicol}
+\usepackage[landscape]{geometry}
+
+% Color
+\usepackage{color,graphicx,overpic}
+\usepackage{xcolor}
+
+% Others
+\usepackage{hyperref}       % hyperlinks
+\usepackage{ifthen}         % if then loops
+
+% Math
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+% \usepackage{calc}
+
+% Box
+\usepackage{tcolorbox}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%% Color %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Define colors
+\definecolor{black}{rgb}{0.0, 0.0, 0.0}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{ExecutiveBlue}{HTML}{0e395c}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{selectiveyellow}{rgb}{1.0, 0.73, 0.0}
+\definecolor{oucrimsonred}{rgb}{0.6, 0.0, 0.0}
+
+
+
+% Set colors
+\colorlet{codecolor}{navyblue}
+\colorlet{customcolor}{airforceblue}
+\colorlet{subbox}{navyblue}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%% Box %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbuselibrary{most,listingsutf8,minted}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+
+% Box
+\newenvironment{mycolorbox}[2]{%
+\begin{tcolorbox}[grow to left by=-1em,grow to right by=-1em,capture=minipage,fonttitle=\large\bfseries, enhanced jigsaw,boxsep=1mm,colback=#1!30!white,on line,tcbox width=auto, toptitle=0mm,colframe=#1,opacityback=0.7,nobeforeafter,title=#2]%
+}{\end{tcolorbox}\\[0.2em]}
+
+
+% Sub-box
+\newenvironment{subbox}[2]{%
+\begin{tcolorbox}[capture=minipage,fonttitle=\normalsize\bfseries, enhanced jigsaw,boxsep=1mm,colback=#1!30!white,on line,tcbox width=auto,left=0.3em,top=1mm, toptitle=0mm,colframe=#1,opacityback=0.7,nobeforeafter,title=#2]\footnotesize %
+}{\normalsize\end{tcolorbox}\vspace{0.1em}}
+
+
+% Multi-box
+\newenvironment{multibox}[1]{%
+\begin{tcbraster}[raster columns=#1,raster equal height,nobeforeafter,raster column skip=1em,raster left skip=1em,raster right skip=1em]}{\end{tcbraster}}
+
+
+% Text-box
+\newenvironment{textbox}[1]{\begin{mycolorbox}{customcolor}{#1}}{\end{mycolorbox}}
+
+
+% Code-box
+\newtcblisting{codebox}[2]{colback=codecolor!5,colframe=codecolor!80!black,listing only, 
+minted options={style=tcblatex,breaklines,autogobble},
+left=2mm,enhanced,
+title=#2, fonttitle=\bfseries,
+listing engine=minted,minted language=#1}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Others %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newcommand{\dotsline}[2]{{\ttfamily\detokenize{#1}}~\dotfill{}~{\footnotesize #2}\\}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Settings %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm if using A4 paper
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Turn off section numbers
+\setcounter{secnumdepth}{0}
+% \setlength{\parindent}{0pt}
+% \setlength{\parskip}{0pt plus 0.5ex}
+
