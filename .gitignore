@@ -1,11 +1,9 @@
+# Latex extensions
 *.fdb_latexmk
 *.aux
 *.fls
 *.log
-*.pdf
 *.synctex.gz
-
-# Latex extensions
 *.listing
 *.out
 *.toc
