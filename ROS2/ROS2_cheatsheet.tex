@@ -1,0 +1,62 @@
+\documentclass[10pt,landscape,a4paper]{article}
+
+\pdfinfo{
+  /Title (template_cheatsheet.pdf)
+  /Creator (TeX)
+  /Producer (pdfTeX 1.40.0)
+  /Author (Vincenzo Ruotolo)
+  /Subject (Example)
+  /Keywords (pdflatex, latex,pdftex,tex)
+}
+
+\input{../cheatsheet_setting.tex}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+
+    \raggedright
+    \footnotesize
+    
+    \begin{center}
+         \Large{\textbf{ROS cheatsheet}} \\
+    \end{center}
+    
+    \begin{multicols}{3}
+    
+        % multicol parameters
+        % \setlength{\columnseprule}{0.25pt}
+        % \setlength{\premulticols}{1pt}
+        % \setlength{\postmulticols}{1pt}
+        % \setlength{\multicolsep}{1pt}
+        % \setlength{\columnsep}{2pt}
+
+        \section{Basic Commands}
+
+        \subsection{Start applications}
+            \begin{tabular}{@{}ll@{}}
+                \verb!roscore!    & start the Master \\
+                \verb!rosrun [pkg] [node]!    & start a node \\
+                \verb!roslaunch [pkg] [launch] [arg]:=[value]}!    & start a launch file \\
+            \end{tabular} \\
+                
+
+    
+        
+    \end{multicols}
+    
+    
+    \newpage
+    
+    
+    
+
+
+    
+\end{document}
