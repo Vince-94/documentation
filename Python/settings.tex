@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+% \usepackage[cache=false]{minted}	% code highlight
+
+
+\usepackage[landscape]{geometry}                % horizontal paper format
+\usepackage{multicol}                           % multicolumn
+\usepackage{imakeidx}                           % index
+\usepackage{enumitem}                           % list
+\usepackage{color,graphicx,overpic,xcolor}      % color
+\usepackage{amsmath,amsthm,amsfonts,amssymb}    % math
+\usepackage{hyperref}                           % hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    linktocpage=false
+}
+\usepackage{ifthen}                             % if then loops
+\usepackage{tabularx}                           % custom tables
+\usepackage{tcolorbox}                          % box
+
+% \usepackage[cache=false]{minted}	            % code highlight
+\usepackage{minted}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Layput %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm if using A4 paper
+\ifthenelse {\lengthtest { \paperwidth = 11in}}
+            { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+            {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+                {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+                {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+            }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Turn off section numbers
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\raggedright            % left justification
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Define colors
+\definecolor{black}{rgb}{0.0, 0.0, 0.0}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+% \definecolor{LightGrey}{HTML}{666666}
+\definecolor{ExecutiveBlue}{HTML}{0e395c}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{selectiveyellow}{rgb}{1.0, 0.73, 0.0}
+\definecolor{oucrimsonred}{rgb}{0.6, 0.0, 0.0}
+\definecolor{LightGray}{gray}{0.9}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%% Box %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbuselibrary{most,listingsutf8,minted}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,right=1mm,boxsep=1mm,middle=1pt}
+
+% Set colors
+\colorlet{codecolor}{LightGray}
+\colorlet{customcolor}{airforceblue}
+\colorlet{subbox}{navyblue}
+
+% Code-box
+\newtcblisting{codebox}[2]{	colback=codecolor!5,
+							colframe=customcolor!80!black,
+							listing only, 
+							minted options={style=tcblatex,breaklines,autogobble},
+							left=0mm,
+							enhanced,
+							title=#2, 
+							fonttitle=\bfseries,
+							listing engine=minted,
+							minted language=#1}
+
+

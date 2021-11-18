@@ -1,0 +1,115 @@
+\documentclass[10pt,landscape,a4paper]{article}
+
+% Import settings
+\input{settings.tex}
+
+
+
+\title{Python Cheatsheed}
+\author{}
+\date{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+
+    \maketitle
+    \footnotesize           % small text
+
+    % Table of contents
+    \begin{multicols}{3}
+        \tableofcontents
+    \end{multicols}
+    \newpage
+
+
+
+    %%%%%%%%%%%%%%%%%% Foundamentals %%%%%%%%%%%%%%%%%% 
+    \section{Foundamentals}
+        \begin{multicols}{3}
+            \input{modules/foundamentals.tex}
+        \end{multicols}
+    \newpage
+
+
+    %%%%%%%%%%%%%%%%%% Common Modules %%%%%%%%%%%%%%%%%% 
+    \section{Common Modules}
+        \begin{multicols}{3}
+            \input{modules/common_modules.tex}
+        \end{multicols}
+    \newpage
+
+
+    %%%%%%%%%%%%%%%%%% Modules Management %%%%%%%%%%%%%%%%%% 
+    \section{Modules Management}
+        \begin{multicols}{3}
+            \input{modules/modules_management.tex}
+        \end{multicols} 
+    \newpage
+
+
+    %%%%%%%%%%%%%%%%%% Object Oriented Programming %%%%%%%%%%%%%%%%%% 
+    \section{Object Oriented Programming}
+        \begin{multicols}{3}
+            \input{modules/object_oriented_programming.tex}
+        \end{multicols}
+    \newpage
+
+
+    %%%%%%%%%%%%%%%%%% Data Plotting %%%%%%%%%%%%%%%%%% 
+    \section{Data Plotting}
+        \begin{multicols}{3}
+            \input{modules/data_plotting.tex}
+        \end{multicols}
+    \newpage
+
+
+    %%%%%%%%%%%%%%%%%% Data Analysis %%%%%%%%%%%%%%%%%% 
+    \section{Data Analysis}
+        \begin{multicols}{3}
+            \input{modules/data_analysis.tex}
+        \end{multicols} 
+    \newpage
+
+
+
+
+\end{document}
+
+
+
+
+% \begin{minted}{python}
+% \end{minted}
+
+
+% \begin{minted}[bgcolor=LightGray,framesep=1mm,baselinestretch=1,fontsize=\footnotesize,linenos=false,autogobble=true,breaklines=true,samepage=true,mathescape=true]{python}
+
+%     # function definition
+%     def fun_name(param, *args, param=default, **kwargs):
+%         # function body
+%         ...
+%         return x    # value to return
+
+%     # function call
+%     a = fun_name(arg_1, ..., arg_n))
+
+%     \end{minted}
+
+
+% \begin{codebox}{python}{}
+% class ClassName:
+
+%     # Constructor
+%     def __init__(self, args):
+%         self.field = value
+    
+%     # Method definition
+%     def method(self, args):
+%         ...
+% \end{codebox}

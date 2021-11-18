@@ -1,0 +1,64 @@
+\subsection{Introduction}
+
+\subsubsection{Principles}
+
+    \begin{itemize}
+        \item Abstraction
+        \item Encapsulation
+        \item Inheritance
+        \item Polimorphism
+    \end{itemize}
+
+
+\subsubsection{Rules}
+
+    \begin{itemize}
+        \item S
+        \item O
+        \item L
+        \item I
+        \item D
+    \end{itemize}
+
+
+
+
+\subsection{Class}
+
+\begin{minted}{python}
+
+class ClassName:
+
+    # Constructor
+    def __init__(self, args):
+        self.field = value
+
+    # Method definition
+    def method(self, args):
+        ...
+
+
+# Child class (Inheritance)
+class ChildClassName(ClassName):
+
+    # Static attribute (class attributes definition)
+    class_attribute = value
+
+    def __init__(self, args):
+        super().__init__(self, args)
+        self.field = value
+
+        # modify class attribute
+        ClassName.class_attribute = value
+
+        # call class method
+        ClassName.classmethod()
+
+    # Static method (class method definition)
+    @classmethod
+    def class_method(cls):
+        cls.class_attribute = value
+
+\end{minted}
+
+

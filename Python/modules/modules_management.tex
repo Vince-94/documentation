@@ -1,0 +1,33 @@
+%%%%%%%%%%%%%%%%%% Management %%%%%%%%%%%%%%%%%% 
+
+\section{Virtual environment}
+
+    \begin{tabular}{@{}ll@{}}
+        \verb!python3 -m venv ws_name!    & create virtual environment \\
+        \verb!source ws_name/bin/activate!    & activate virtual environment \\
+        \verb!deactivate!    & deactivate virtual environment \\
+    \end{tabular} \\
+        
+
+
+\section{PIP}
+
+    \subsection{Basic commands}
+
+        \begin{tabular}{@{}ll@{}}
+            \verb!pip3 list!    & list of installed packages \\
+            \verb!pip3 install!    & install packages \\
+            \verb!pip3 unistall!    & unistall packages \\
+            \verb!pip3 show!    & info about package \\
+            \verb!pip3 check!    & verify dependencies \\
+            \verb!pip3 search!    & search PyPI for packages \\
+        \end{tabular} \\
+    
+    \subsection{Python dependancies}
+    
+        \begin{tabular}{@{}ll@{}}
+            \verb!pip3 freeze > deps.txt!    & create list of dependencies \\
+            \verb!pip3 install -r deps.txt!    & install dependencies from list \\
+            \verb!pip3 uninstall -r deps.txt!    & unistall dependencies from list \\
+        \end{tabular} \\
+

@@ -1,0 +1,124 @@
+\section{Argumens Parser}
+
+\begin{minted}[breaklines=true]{python}
+import argparse
+
+# create object
+arg = argparse.ArgumentParser()
+
+# add argument
+arg.add_argument('-strink_arg_name', 'full_arg_name', required=True, help='description')
+
+args = vars(arg.parse_args())
+\end{minted}
+
+
+
+\section{Filesystem}
+
+\begin{minted}[breaklines=true]{python}
+from pathlib import Path
+
+# creating path
+address = Path('home', '...', 'file')
+actual_path = Path.cwd()
+home_path = Path.home()
+
+# absolute path
+address.is_absolute()
+
+# get path parts
+address.parent      # previous folder
+address.name        # final position
+address.stem        # home
+address.drive
+\end{minted}
+
+
+
+\section{File Management}
+
+\subsection{csv}
+
+\begin{minted}[breaklines=true]{python}
+import csv
+
+# write
+f = open('file.csv', 'w', newline = '')
+f_csv = csv.writer(f, delimiter='\t', lineterminator='\n\n')
+f_csv.writerow(['elem_0', ..., 'elem_n'])
+
+# write as dictionary
+f = open('file.csv', 'w', newline = '')
+f_csv = csv.DictWriter(f, ['key_0', ..., 'key_n'])
+f_csv.writeheader()
+f_csv.writerow({'key_0': value_0, ..., 'key_n': value_n})
+
+# read
+f = open('file.csv', 'r')
+f_csv = csv.reader(f)
+for row in f_csv:
+    print('Row #' + str(f_csv.line_num) + ' ' + str(row))
+
+# read dictionary
+f = open('file.csv')
+
+f_csv = csv.DictReader(f, ['key_0', ..., 'key_n'])
+for row in f_csv:
+    print(row['key_0'], ..., row['key_n'])
+
+# close
+f.close()
+\end{minted}
+
+
+\subsection{json}
+
+\begin{minted}[breaklines=true]{python}
+import json
+
+# write
+json_write = {'key_0': value_0, ..., 'key_n': value_n}
+stringOfJsonData = json.dumps(json_write)
+
+# read
+json_read = '{'key_0': value_0, ..., 'key_n': value_n}'
+jsonDataAsPythonValue = json.loads(json_read)
+print(jsonDataAsPythonValue)
+\end{minted}
+
+
+
+\section{Regular Expression}
+
+\begin{minted}[breaklines=true]{python}
+# object
+regex_obj = re.compile(r'string_to_match')
+
+# find the first result
+match = regex_obj.search(Text)
+regex_obj.search.group()
+regex_obj.search.groups()
+
+# find all results and replace
+match = regex_obj.findall(Text)
+
+# censoring data
+Censored_Text = regex_obj.sub(r'CENSORED', Text)
+            
+\end{minted}
+
+
+\begin{tabular}{@{}ll@{}}
+    string\_to\_match: \\
+    \verb!string!    & specific string \\
+    \verb!(\d\D{1})(\w{2}\W)!    &  \\
+    \verb!(...)!    & grouping \\
+    \verb![]!    & create a character class \\
+    \verb!+!    & match one or more characters \\
+    \verb!*!    & match zero or more characters \\
+    \verb!?!    & match zero or one character \\
+    \verb!.!    & match any character except for newline \\
+    \verb!^string!    & start with \\
+    \verb!string&!    & end with \\
+\end{tabular}

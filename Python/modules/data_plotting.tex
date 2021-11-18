@@ -1,0 +1,53 @@
+\begin{minted}{python}
+import matplotlib.pyplot as plt
+\end{minted}
+
+
+\subsection{Plot}
+
+\begin{minted}{python}
+fig, axes = plt.subplots(figsize=(12,6))
+
+axes.plot(
+    x, y, 
+    color='value', 
+    linewidth=value,
+    marker='value', 
+    markersize=value, 
+    label='string'
+)
+
+plt.show()
+\end{minted}
+
+
+\subsection{Subplot}
+
+\begin{minted}{python}
+plot_obj = plt.subplots(nrows=nx, ncols=ny, figsize=(12,6))
+fig, (axes_0, ..., axes_n) = plot_obj
+
+# subplot 0
+axes_0.plot(
+    x0, y0, ...
+)
+
+...
+
+# subplot n
+axes_n.plot(
+    xn, yn, ...
+)
+
+plt.show()
+\end{minted}
+
+
+\subsection{Scatter}
+    
+\subsection{Bar}
+
+\subsection{Histogram}
+
+\subsection{Kernel density estimator}
+
