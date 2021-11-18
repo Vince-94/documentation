@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amscd, amsthm, amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\marginparwidth 40pt
+\marginparsep 10pt
+\topmargin -20pt
+\headsep 10pt
+\textheight 8.7in
+\textwidth 6.65in
+\linespread{1.2}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\rr}{\mathbb{R}}
+
+\newcommand{\al}{\alpha}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\aff}{aff}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Machine Learning}
+\author{}
+\date{}
+
+
+\begin{document}
+
+    \maketitle
+    
+
+    \section{Introduction}
+        Machine Learning is the science about learning from past data and then making prediction about the future, which is driven by:
+        \begin{itemize}
+            \item Statistical modelling
+            \item Data analysis
+            \item Numerical optimization
+        \end{itemize}
+    
+
+    \section{Machine Learning Algorithms Family}
+
+        \begin{itemize}
+            \item Supervised Learning: the learning process is led by the labels associated to the features
+                \begin{itemize}
+                    \item Classification: the outputs are discrete values (binary or multi-class) and classified in labels
+                    \begin{itemize}
+                        \item Support Vector Machine (SVM)
+                        \item Discriminant Analysis
+                        \item Naive Bayes
+                        \item Nearest Neighbor
+                    \end{itemize}
+                    \item Regression: the outputs are continuous values, while n measured quantities correlate all the variables
+                    \begin{itemize}
+                        \item Linear Regression, GLM
+                        \item SVR, GPR
+                        \item Ensemble Methods
+                        \item Decision Trees
+                        \item Neural Networks
+                    \end{itemize}
+                \end{itemize}
+            \item Unsupervised Learning: there are no outputs available in learning process, then the the model is build by recognizing common patterns and label them in clusters (clustering)
+                \begin{itemize}
+                    \item K-Means, K-Medoids, Fuzzy logic, C-Means
+                    \item Hierarchical
+                    \item Gaussian Mixture
+                    \item Neural Networks
+                    \item Hidden Markov Model
+                \end{itemize}
+            \item Reinforcement Learning
+                \begin{itemize}
+                    \item 
+                \end{itemize}
+        \end{itemize}
+    
+
+
+    \section{Regression Algorithms}
+    
+        \subsection{Linear Regression}
+            The linear regression is linear in parameters even if can be nonlinear in input-output relation. The general model is a linear combination of the model parameters $\theta=[\theta_1 \hdots \theta_n]^T$ in $x$:
+            \begin{equation}
+                y = \sum_{i=1}^{n} \theta_i x_i = \theta^T x
+            \end{equation}
+            where: n = dimension of the model (number of features)
+            
+            
+        
+        \subsection{Linear Regression}
+            The linear regression is linear in parameters even if can be nonlinear in input-output relation. The general model is a linear combination of the model parameters $\theta=[\theta_1 \hdots \theta_d]$ in $\phi(x)$ in $\phi(x)$:
+            \begin{equation}
+                y = \sum_{j=1}^{d} \theta_j \phi_j(x) + \epsilon = \theta^T \phi(x) + \epsilon
+            \end{equation}
+            where: d = order of the model, $\phi(x)=[\phi_1(x) \hdots \phi_d(x)]$ vector-valued map which columns vectors are the basis functions, $\epsilon \thicksim N(0, \sigma^2)$ stochastic error.
+
+
+    \section{Classification Algorithms}
+
+        \subsection{Naive Bayes Classifier}
+
+        \subsection{Support Vector Machine}
+
+
+
+
+    \section{Validation}
+    
+        \subsection{Bayesan Loss}
+            For a given estimate of the parameters, the cost/loss function measures the error in the prediction:
+            \begin{itemize}
+                \item Quadratic loss: $L = (\theta - \hat{\theta})^2$
+                \item Absolute-value loss: $L = |\theta - \hat{\theta}|$
+                \item Hit-or-miss loss: $L = \begin{cases} 0,   \quad   |\theta - \hat{\theta}| \ll \delta \\
+                                                           1,   \quad   |\theta - \hat{\theta}| > \delta \\
+                                            \end{cases}$
+                \item Huber loss: $L = \begin{cases} 0,   \quad     (\theta - \hat{\theta}) \ll \delta \\
+                                                     1,   \quad     (\theta - \hat{\theta}) > \delta \\
+                                        \end{cases}$
+            \end{itemize}
+    
+
+        \subsection{Bayesan Loss Estimator}
+            \begin{itemize}
+                \item Minimum Mean-Square Error (MMSE)
+                \item Minimum Absolute Error (MAE)
+                \item Maximum A-Posteriori Estimator (MAP)
+                \item Maximum Likelihood Estimator (ML)
+            \end{itemize}
+
+
+
+
+
+
+
+
+\end{document}
