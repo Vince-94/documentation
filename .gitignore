@@ -4,3 +4,9 @@
 *.log
 *.pdf
 *.synctex.gz
+
+# Latex extensions
+*.listing
+*.out
+*.toc
+*/_minted-python
