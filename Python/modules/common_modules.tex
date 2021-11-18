@@ -1,4 +1,24 @@
-\section{Argumens Parser}
+\subsection{Math}
+
+\begin{minted}[breaklines=true]{python}
+import math
+\end{minted}
+
+\begin{tabular}{@{}ll@{}}
+    \verb!!    & absolute value \\
+    \verb!!    & round value \\
+    \verb!()!    & sine \\
+    \verb!cos()!    & cosine \\
+    \verb!tan()!    & tangent \\
+    \verb!sqrt()!    & square root \\
+    \verb!log()!    & logarithm \\
+    \verb!ceil()!    & ceil \\
+    \verb!floor()!    & floor \\
+\end{tabular}
+
+
+
+\subsection{Argumens Parser}
 
 \begin{minted}[breaklines=true]{python}
 import argparse
@@ -14,7 +34,7 @@ args = vars(arg.parse_args())
 
 
 
-\section{Filesystem}
+\subsection{Filesystem}
 
 \begin{minted}[breaklines=true]{python}
 from pathlib import Path
@@ -36,9 +56,9 @@ address.drive
 
 
 
-\section{File Management}
+\subsection{File Management}
 
-\subsection{csv}
+\subsubsection{csv}
 
 \begin{minted}[breaklines=true]{python}
 import csv
@@ -72,7 +92,7 @@ f.close()
 \end{minted}
 
 
-\subsection{json}
+\subsubsection{json}
 
 \begin{minted}[breaklines=true]{python}
 import json
@@ -89,7 +109,7 @@ print(jsonDataAsPythonValue)
 
 
 
-\section{Regular Expression}
+\subsection{Regular Expression}
 
 \begin{minted}[breaklines=true]{python}
 # object
@@ -105,7 +125,6 @@ match = regex_obj.findall(Text)
 
 # censoring data
 Censored_Text = regex_obj.sub(r'CENSORED', Text)
-            
 \end{minted}
 
 
@@ -122,3 +141,62 @@ Censored_Text = regex_obj.sub(r'CENSORED', Text)
     \verb!^string!    & start with \\
     \verb!string&!    & end with \\
 \end{tabular}
+
+
+
+
+
+
+
+
+\subsection{Green thread process}
+Multi-threading (aka "Green thread process") is used in IO applications.
+
+\begin{minted}[breaklines=true]{python}
+import threading
+
+def fun_name(...):
+    ...
+
+# thread 1
+t1 = threading.Thread(target=fun_name)
+t1.deamon = True
+t1.start()
+
+# thread 2
+t2 = threading.Thread(target=fun_name)
+t2.deamon = True
+t2.start()
+\end{minted}
+        
+
+        
+
+
+\subsection{Multiprocessing}
+This method is the proper multi-threading.
+
+\begin{minted}[breaklines=true]{python}
+import numpy as np
+from numba import njit
+from concurrent.futures import ThreadPoolExecutor
+
+# function definition
+def fun_name(...):
+    ...
+
+# multi-process function
+multi_fun = njit(fun_name, nogil=True)
+
+
+# process 1
+with ThreadPoolExecutor(8) as ex:
+    ex.map(multi_fun, range(100))
+
+# process 2
+with ThreadPoolExecutor(8) as ex:
+    ex.map(multi_fun, range(10))
+\end{minted}
+
+
+

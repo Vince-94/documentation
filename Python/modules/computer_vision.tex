@@ -1,0 +1,135 @@
+\subsection{OpenCV}
+
+\subsubsection{Input/Output}
+
+\begin{minted}[breaklines=true]{python}
+import cv2
+
+# Read
+image_obj = cv2.imread(image_file.format, options)
+'''
+options:
+- cv2.IMREAD_COLOR: read colors
+- cv2.IMREAD_GRAYSCALE: read gray-scale
+'''
+h, w = image.shape[:2]   # image height and width
+
+# Show
+cv2.imshow('image_out_name', image_obj)
+cv2.waitKey(option)
+'''
+options: if empty it close at key pressing, if not indicate the value in ms after which the picture is closed
+'''
+
+# Write
+cv2.imwrite('image_file.format', image_obj)
+
+\end{minted}
+
+
+
+
+\subsubsection{Manipulation}
+
+\begin{minted}[breaklines=true]{python}
+# Set colors
+            # set color
+            imag_obj[i, j] = color
+            
+            # read color
+            (b, g, r) = image_obj[i, j]
+
+
+# Cut
+cut_image = image_obj[i, j]
+
+
+# Resize
+            # resize by width
+            new_w = 300
+            resize_ratio = new_w/w
+            dim = (new_w, int(h*resize_ratio))
+            resized_image = cv2.resize(image_obg, dim, interpolation=cv2.INTER_AREA)
+            
+            # resize by percentage
+            resized_image = cv2.resize(image, (0, 0), fx=perc_x, fy=perc_y, interpolation=cv2.INTER_AREA)
+
+
+# Reflection
+flipped_x = cv2.flip(image_obj)
+'''
+option:
+- 0: reflect around vertical axis
+- 1: reflect around horizontal axis 
+'''
+
+# Pudding
+pud_image = cv2.copyMakeBorder(image_obj, top_aug, bottom_aug, sx_aug, dx_aug, option)
+'''
+- cv2.BORDER_REPLICATE: the pixel at borders are replicated
+- cv2.BORDER_REFLEECT: the image is reflected at  borders
+- cv2.REFLECT_101: the image is reflected at borders without borders
+- cv2.BORDER_WRAP: replicate image at borders
+- cv2.BORDER_CONSTANT, value=color: fill with color
+'''
+
+\end{minted}
+
+
+
+
+\subsubsection{Drawing}
+
+\begin{minted}[breaklines=true]{python}
+# Creating
+    # gray-scale image
+    image_obj = np.zeros((x_size, y_size), dtype='data_type')
+
+    # color image
+    image_obj = np.zeros((x_size, y_size, 3), dtype='data_type')
+
+
+# Figures
+    # Line
+    cv2.line(image_obj, init_point, fin_point, color, thickness=thick_value, lineType=cv2.line_type)
+    
+    # Rectangle
+    cv2.rectangle(image_obj, init_point, fin_point, color, thickness=thick_value, lineType=cv2.line_type)
+    
+    # Circle
+    cv2.circle(image_obj, (center_x, center_y), radius, color, thickness=thick_value, lineType=cv2.line_type)
+'''
+options:
+- thick\_value: value of thickness, if set to -1 it means solid
+- line\_type: 
+- cv2.LINE_AA: line AA
+'''
+\end{minted}
+
+
+
+
+\subsubsection{Transformations}
+
+\begin{minted}[breaklines=true]{python}
+# Translation
+T = np.float32([[1, 0, x], [0, 1, y]])
+image_translated = cv2.warpAffine(image_obj, T, (w, h))
+
+# Rotation
+# custom rotation
+R = cv2.getRotationMatrix2D((x_center, y_center), angle, 1.0)
+image_rotated = cv2.warpAffine(image_obj, R, (w, h))
+
+# quarter rotation
+image_rotated = cv2.rotate(image_obj, option)
+'''
+option:
+- cv2.ROTATE_90_CLOCKWISE: -90°
+- cv2.ROTATE_90_COUNTERCLOCKWISE: +90°
+- cv2.ROTATE_180_CLOCKWISE: -180°
+- cv2.ROTATE_90_COUNTERCLOCKWISE: +180°
+'''
+\end{minted}
+
+

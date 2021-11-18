@@ -23,16 +23,189 @@
 
 
 
+\subsubsection{Data conversion}
 
-\subsection{Operators}
+\begin{tabular}{@{}ll@{}}
+    \verb!!    & convert in string data type \\
+    \verb!int()!    & convert in integer data type \\
+    \verb!float()!    & convert in float data type \\
+    \verb!bool()!    & convert in bool data type \\
+    \verb!list()!    & convert in list data type \\
+    \verb!dict()!    & convert in dict data type \\
+    \verb!set()!    & convert in set data type \\
+\end{tabular}
+
+
+
+\subsubsection{Generic operations}
+\begin{tabular}{@{}ll@{}}
+    \verb!len(x)!    & variable length \\
+    \verb!min(x), max(x)!    & min/max value \\
+    \verb!sorted(x)!    & sort a list \\
+    \verb!enumerate(x, ...)!    & iterator \\
+    \verb!zip(x)!    & iterator on tuple \\
+    \verb!all(x)!    & true if all are true \\
+    \verb!any(x)!    & true if at least one is true \\
+\end{tabular}
+
+
+\subsubsection{Sting operations}
+\begin{tabular}{@{}ll@{}}
+    \verb!s1 + s2!    & concatenation \\
+    \verb!s * int!    & multiplication \\
+    \verb!s[i]!    & indexing \\
+    \verb!s.index()!    & ?? \\
+    \verb!s.find()!    & ?? \\
+    \verb!s.strip()!    & remove white spaces \\
+    \verb!s.lower()!    & lowercase \\
+    \verb!s.upper()!    & uppercase \\
+    \verb!s.split([sep])!    & creates string array of words \\
+    \verb!s.join(seq)!    & creates string array of words \\
+    \verb!s.find('string')!    & match string in string \\
+    \verb!s.replace('old', 'new')!    & replace string \\
+\end{tabular}
+
+
+\subsubsection{List operations}
+\begin{tabular}{@{}ll@{}}
+    \verb!l.append(x)!    & append a element \\
+    \verb!l.extend(x)!    & append as sequence of elements \\
+    \verb!l.insert(i,x)!    & insert variable at i position \\
+    \verb!l.remove(x)!    & remove value x \\
+    \verb!l.pop([i])!    & remove and return item at index i \\
+    \verb!l.sort()!    & sort \\
+    \verb!l.revert()!    & reverse sort \\
+\end{tabular}
+
+
+\subsubsection{Dictionaries operations}
+\begin{tabular}{@{}ll@{}}
+    \verb!d[key] = value!    & assign value to a key \\
+    \verb!d.clear()!    & clear dictionary \\
+    \verb!d.update(d2)!    & ?? \\
+    \verb!d.key()!    & ?? \\
+    \verb!d.values()!    & ?? \\
+    \verb!d.items()!    & ?? \\
+    \verb!d.pop(key[default])!    & ?? \\
+    \verb!d.popitem()!    & ?? \\
+    \verb!d.get(key[default])!    & ?? \\
+    \verb!d.setdefault(key[default])!    & ?? \\
+\end{tabular}
+
+
+\subsubsection{Sets operations}
+\begin{tabular}{@{}ll@{}}
+    \verb!s.update(s2)!    & ?? \\
+    \verb!s.copy()!    & ?? \\
+    \verb!s.add(key)!    & ?? \\
+    \verb!s.remove(key)!    & ?? \\
+    \verb!s.discard(key)!    & ?? \\
+    \verb!s.clear()!    & ?? \\
+    \verb!s.pop()!    & ?? \\
+\end{tabular}
+
+
+
+
+
+
+\section{Operators}
+
+    \subsection{Arithmetic operators}
+        \begin{tabular}{@{}ll@{}}
+            \verb!+, -, *, /!    & basic operations \\
+            \verb!%!     & module \\
+            \verb!**!      & exponential \\
+            \verb!//!      & floor \\
+        \end{tabular}
+        
+    \subsection{Logic operators}
+        \begin{tabular}{@{}ll@{}}
+            \verb!==!    & equal \\
+            !=    & not equal \\
+            \verb!<,>!     & strict inequality \\
+            \verb!<=,>=!      & inequality \\
+        \end{tabular}
+
+
+    \subsection{Boolean operators}
+        \begin{tabular}{@{}ll@{}}
+            \verb!x and y!    & and operator \\
+            \verb!x or y!    & or operator \\
+            \verb!not x!    & not operator \\
+        \end{tabular}
+        
+        
+    \subsection{Assignment operators}
+        \begin{tabular}{@{}ll@{}}
+            \verb!=!    & value assignment \\
+            \verb!+=, -=, *=, /=, **=, //=!    & arithmetic assignment \\
+            % \verb!&=, \|=!    & logic assignment \\
+            % \verb!^=!    & ?? \\
+            % \verb!>>=, <<=!    & ?? \\
+        \end{tabular}
+        
+        
+    \subsection{Other operators}
+        \begin{tabular}{@{}ll@{}}
+            \verb!x is y!    & true if x is y \\
+            \verb!x is not y!    & true if x is not y \\
+            \verb!x in y!    & true x is in y sequence \\
+            \verb!x not in y!    & true x is not in y sequence \\
+        \end{tabular}
+        
+        
+    \subsection{Indexing}
+        \begin{tabular}{@{}ll@{}}
+            \verb!x[i]!    & list i-th element \\
+            \verb!x[init_val:fin_val]!    & list slicing \\
+        \end{tabular}
+
+
+
 
 
 
 
 \subsection{Loops/Conditions}
 
+\subsubsection{if/elif/else}
+
+\begin{minted}{python}
+if condition:
+    ...
+elif condition:
+    ...
+else:
+    default
+\end{minted}
 
 
+\subsubsection{while}
+
+\begin{minted}{python}
+while condition:
+    ...
+\end{minted}
+
+
+\subsubsection{for}
+
+\begin{minted}{python}
+\for condition:
+    ...
+\end{minted}
+
+
+Keywords:
+\begin{tabular}{@{}ll@{}}
+    \verb!break!    & end the loop \\
+    \verb!continue!    & continue the loop \\
+    \verb!\t!    & tab \\
+\end{tabular}
+
+
+    
 
 
 \subsection{Functions}
@@ -54,15 +227,71 @@ a = fun_name(arg_1, ..., arg_n))
 
 \subsection{Input/Output}
 
+\begin{tabular}{@{}ll@{}}
+    \verb!print(x)!    & print function \\
+    \verb!x = input("string: ")!    & input function \\
+\end{tabular}
+
+Keywords:
+\begin{tabular}{@{}ll@{}}
+    \verb!\n!    & newline \\
+    \verb!\s!    & space \\
+    \verb!\t!    & tab \\
+\end{tabular}
+
+
+
+
+
+
+
 
 
 
 \subsection{Filesystem}
 
+\begin{tabular}{@{}ll@{}}
+    \verb!f = open("file","mode",encoding="enc")!    & open file \\
+    \verb!f.write(text)!    & writing \\
+    \verb!f.writelines(list of lines)!    & writing \\
+    \verb!f.read()!    & reading chars \\
+    \verb!f.readlines()!    & reading lines \\
+    \verb!f.readline()!    & next line \\
+    \verb!f.close()!    & close file \\
+\end{tabular}\\
+mode: \\
+- r: read \\
+- a: append \\
+- w: write \\
+- x: create \\
+enc: \\
+- utf8 \\
+- ascii \\
+- latin1 \\
+
+
+\begin{minted}{python}
+# open file
+with open("file", "mode") as f:
+    for line in f:
+        ...
+\end{minted}
+
+
+
+
 
 
 
 \subsection{Error Handling}
+
+\begin{minted}{python}
+raise ExcClass()
+try:
+    <code>
+except Exception as exc:
+    <error>
+\end{minted}
 
 
 
