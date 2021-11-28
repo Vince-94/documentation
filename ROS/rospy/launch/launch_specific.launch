@@ -1,0 +1,67 @@
+<launch>
+
+
+	<!-- bag -->
+		<arg name="path" default="/path" />
+
+		<!-- record -->
+		<node pkg="rosbag" type="record" name="rosbag_record" args="-O $(arg path)/filename_1.bag topic1_name topic2_name"/>
+		<!-- play -->
+		<node pkg="rosbag" type="play" name="rosbag_play" output="screen" args="--clock $(arg path)/filename_1.bag $(arg path)/filename_2.bag" />
+
+
+
+	<!-- RViz -->
+		<arg name="pkg_name" default="ROBOT_PKG" />
+
+		<node pkg="rviz" type="rviz" name="rviz" args="-d $(find pkg_name)/param/rviz.rviz" required="false" />
+
+
+
+	<!-- Gazebo SDF launch -->
+		<arg name="pkg_name" default="ROBOT_PKG" />
+
+		<include file="$(find gazebo_ros)/launch/empty_world.launch">
+			<arg name="world_name" value="$(find $(arg pkg_name))/worlds/ROBOT.world"/>
+			<arg name="paused" value="false"/>
+			<arg name="use_sim_time" value="true"/>
+			<arg name="gui" value="true"/>
+			<arg name="recording" value="false"/>
+			<arg name="debug" value="false"/>
+		</include>
+
+
+
+
+	<!-- Gazebo URDF spawn -->
+		<include file="$(find gazebo_ros)/launch/empty_world.launch">
+			<arg name="world_name" value="$(find gazebo_pkg)/worlds/worls_name.world"/>
+			<arg name="paused" value="false"/>
+			<arg name="use_sim_time" value="true"/>
+			<arg name="gui" value="true"/>
+			<arg name="recording" value="false"/>
+			<arg name="debug" value="false"/>
+		</include>
+
+
+		<!-- URDF XML robot description loaded on the parameter server. -->
+		<param name="robot_param" command="$(find xacro)/xacro --inorder '$(find robot_description)/urdf/robot_name.xacro'" />
+
+		<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+		<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_robot" respawn="false" output="screen" args="-urdf -model robot_name -param robot_param -robot_namespace robot_1" />
+
+
+
+	<!-- TF -->
+		<node pkg="tf2_ros" type="static_transform_publisher" name="stb_name" args=" x y z yaw pitch roll frame_id child_frame_id " respawn="true" />
+		<node pkg="tf2_ros" type="static_transform_publisher" name="stb_name" args=" x y z yaw qx qy qz qw frame_id child_frame_id " respawn="true" />
+
+
+
+	<!-- Time delay -->
+		<arg name="time_delay" default="1.0" />
+
+		<node name="listener" pkg="roscpp_tutorials" type="listener" launch-prefix="bash -c	'sleep $(arg time_delay); $0 $@' " />
+
+
+</launch>

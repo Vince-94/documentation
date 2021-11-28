@@ -1,0 +1,57 @@
+<launch>
+
+
+	<!-- arguments definition -->
+	<arg name="arg_1" default="1" doc="documentation" />
+	<arg name="arg_2" value="0" doc="documentation" />
+
+
+
+	<!-- parameters definition -->
+	<param name="param_1" value="0.0" />
+	<param name="param_2" value="value" type="type" />
+	<param name="param_3" textfile="$(find pkg_name)/path/file.txt" />
+	<param name="param_4" binfile="$(find pkg_name)/path/file"/>
+	<param name="param_5" command="$(find pkg_name)/exe '$(find pkg_name)/file.txt" />
+
+
+
+	<!-- loading/saving/deleting parameters -->
+	<rosparam command="load" file="$(find pkg_name)/path/file.yaml" ns="namespace" />
+	<rosparam command="dump" file="$(find pkg_name)/path/file.yaml" ns="namespace" />
+	<rosparam command="delete" file="$(find pkg_name)/path/file.yaml" ns="namespace" />
+
+
+
+	<!-- environment variables -->
+	<env name="env_variable" value="value" />
+
+
+
+	<!-- set a machine -->
+	<machine name="local_machine" address="local_hostname" env-loader="/opt/ros/$ROS_DISTRO/env.sh" default="true" />
+	<machine name="remote_machine" address="remote_hostname" env-loader="/opt/ros/$ROS_DISTRO/env.sh" default="false" user="username" password="password" timeout="10.0" />
+
+
+
+	<!-- launch a simple node -->
+	<node pkg="pkg_name" type="node_ex.py" name="node_name" />
+
+	<node pkg="pkg_name" type="node_ex.py" name="node_name" args="arg" ns="namespace" output="screen" machine="machine_name" required="true" respawn="false" launch-prefix="option " >
+		<remap from="original_name" to="new_name" />
+		<env />
+		<rosparam />
+		<param />
+
+	</node>
+
+
+
+	<!-- launch a launch file -->
+	<include file="$(find pkg_name)/path/launch_file.launch" ns="namespace" >
+		<arg name="arg_1" value="" />
+	</include>
+
+
+
+</launch>
