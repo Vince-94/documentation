@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  net_name:
+    driver: bhoo
+
+services:
+
+  container_1:
+    image: name:tag 
+    container_name: container_name
+    build: ./dir_to_build
+    command: cmd
+    networks:
+      - net_name
+    restart: always
+
+
+  container_2:
+    image: name:tag 
+    container_name: container_name
+    depends_on:
+      - ros-master
+    networks:
+      - net_name
+    environment:
+      - env_1 = value
+    user: user_name
+    volumes:
+      - local:container:ro/rw
+    command: cmd
+
+

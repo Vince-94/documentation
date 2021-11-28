@@ -1,0 +1,47 @@
+FROM ros:noetic-full-desktop
+
+# Initialization
+RUN apt -y update
+RUN apt -y upgrade
+
+
+# Install OS resources
+RUN apt install -y software-properties-common apt-transport-https wget
+
+
+# Install IDE
+RUN apt install -y vim gedit nano
+
+
+# Install VS Code
+RUN wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+RUN apt install code
+
+
+# Install tools
+RUN apt install xauth
+
+
+# Install MAVROS
+RUN apt install -y ros-noetic-mavros ros-noetic-mavros-extras &&\
+    wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh &&\ 
+    chmod +x install_geographiclib_datasets.sh &&\
+    ./install_geographiclib_datasets.sh &&\
+    rm install_geographiclib_datasets.sh
+
+
+# Install ArduPilot
+RUN git clone https://github.com/Antonio210696/ardupilot.git &&\
+    cd ardupilot &&\
+    git submodule update --init --recursive &&\
+    /Tools/environment_install/install-prereqs-ubuntu.sh -y &&\
+    . /etc/profile &&\
+    ./waf configure --board sitl &&\
+    ./waf copter &&\
+
+
+
+
+
+
