@@ -1,35 +1,35 @@
 \part{Filesystem}
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%% Package %%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    \section{Package}
-    
-        The package is the smallest unit that is possible to build in ROS and the main unit for organizing software, which can contain:
-        \begin{itemize}
-            \item ROS runtime processes (nodes)
-            \begin{itemize}
-                \item scripts: contains executables python scripts
-                \item src: contains C++ cource code
-                \item include: contains headers and libraries needed
-                \item launch: contains launch files
-            \end{itemize}    
-            \item ROS-dependent libraries (dependencies)
-            \begin{itemize}
-                \item msg: custom messages structure definition
-                \item src: custom services structure definition
-                \item action: custom actions structure definition
-                \item config: configuration files
-            \end{itemize}    
-            \item Configuration files
-            \begin{itemize}
-                \item package.xml: manifest file
-                \item CMakeLists.txt: CMake build file
-            \end{itemize}
-            \item Anything else that is usefully organized together
-        \end{itemize}    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Package %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Package}
+
+  The package is the smallest unit that is possible to build in ROS and the main unit for organizing software, which can contain:
+  \begin{itemize}
+      \item ROS runtime processes (nodes)
+      \begin{itemize}
+          \item scripts: contains executables python scripts
+          \item src: contains C++ cource code
+          \item include: contains headers and libraries needed
+          \item launch: contains launch files
+      \end{itemize}    
+      \item ROS-dependent libraries (dependencies)
+      \begin{itemize}
+          \item msg: custom messages structure definition
+          \item src: custom services structure definition
+          \item action: custom actions structure definition
+          \item config: configuration files
+      \end{itemize}    
+      \item Configuration files
+      \begin{itemize}
+          \item package.xml: manifest file
+          \item CMakeLists.txt: CMake build file
+      \end{itemize}
+      \item Anything else that is usefully organized together
+  \end{itemize}    
 
 \begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{shell}
 catkin_ws
@@ -62,9 +62,9 @@ catkin_ws
 
 
     
-        \subsection{package.xml}
-            The package manifest provides metadata about a package, including its name, version, description, license information, dependencies, and other meta information like exported packages.
-    
+\subsection{package.xml}
+    The package manifest provides metadata about a package, including its name, version, description, license information, dependencies, and other meta information like exported packages.
+
 \begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
 <package format="2">
 
@@ -77,18 +77,29 @@ catkin_ws
   <author>author_name</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <depend>roscpp</depend>
-  <depend>rospy</depend>
 
+  <! dependency only for building >
+  <build_depend>...</build_depend>
+
+  <! dependency only for building which exports a header >
+  <build_export_depend>...</build_export_depend>
+
+  <! dependency required only when running the package >
+  <exec_depend>...</exec_depend>
+
+  <! dependency including build_depend, build_export_depend, exec_depend >
   <depend>...</depend>
 
 </package>
 \end{minted}
     
-    
-    
-        \subsection{CMakeLists.txt}
-            The CmakeLists file describes the build instructions for the Cmake.
+
+
+
+
+
+\subsection{CMakeLists.txt}
+    The CmakeLists file describes the build instructions for the Cmake.
 
 \begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
 ########## Informations ##########
@@ -113,6 +124,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
 
 ########## Dependencies ##########
+# Find ROS package dependency (<depend>/<build_depend> in package.xml)
 find_package(catkin REQUIRED COMPONENTS 
   rospy
   roscpp
@@ -121,11 +133,14 @@ find_package(catkin REQUIRED COMPONENTS
 
 
 ########## Catkin specific configuration ##########
+# Libraries and headers needed by all the interfaces you export to other 
+# ROS packages (<depend>/<build_export_depend> in package.xml)
 catkin_package(
   DEPENDS rospy roscpp ...
   CATKIN_DEPENDS rospy roscpp ...
 )
 
+# Header directories
 include_directories(
   include 
   ${catkin_INCLUDE_DIRS}
@@ -136,28 +151,28 @@ include_directories(
 
 
 
-
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%% Data Structure %%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \section{Data Structure}
+\section{Data Structure}
+
+    The message data structure is the specific format used to compose messages:
+    \begin{itemize}
+        \item .msg – topic data structure
+        \item .srv – service data structure
+        \item .action – action data structure
+    \end{itemize}
     
-        The message data structure is the specific format used to compose messages:
-        \begin{itemize}
-            \item .msg – topic data structure
-            \item .srv – service data structure
-            \item .action – action data structure
-        \end{itemize}
-        
-        
-        \subsection{Creating message package}
-        
-            It is always suggested to create a separate package containing all the custom messages created:
+    
+    \subsection{Creating message package}
+    
+        It is always suggested to create a separate package containing all the custom messages created:
+
 \begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
 catkin create pkg msg_dep -c rospy roscpp message_generation actionlib actionlib_msgs ...
 \end{minted}
-            with the following architecture:
+        with the following architecture:
 \begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{shell}
 catkin_ws
   /src
@@ -255,24 +270,45 @@ catkin_package(
 
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%% Dependencies %%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Dependencies %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \section{Dependencies}
-        
-        Python modules and C++ libraries are dependencies that can be imported in any other package in the workspace.
-        
-        
-        \subsection{Python modules}
-        
-        
-        
-        \subsection{C++ libraries}
-        
-        
-        
-        
-        
-        
-        
+
+
+\section{Dependencies}
+    
+
+  \subsection{ROS packages}
+
+
+  
+  \subsection{System dependencies}
+  Python modules and C++ libraries are dependencies that can be imported in any other package in the workspace.
+
+
+  For python modules:
+  \begin{itemize}
+    \item package.xml
+    \begin{itemize}
+      \item <exec\_dep>: system dependencies (rosdep, rospkg, ecc...)
+    \end{itemize}
+  \end{itemize}
+  
+  For C++ libraries:
+  \begin{itemize}
+    \item package.xml
+    \begin{itemize}
+      \item <build\_dep>: packages needed for building your programs, including development files like headers, libraries and configuration files. For each build dependency, specify the corresponding rosdep key
+      \item <build\_export\_depend>: packages needed for building your programs and furthermore that exports a header including an imported dependency
+      \item <exec\_dep>: shared (dynamic) libraries, executables, Python modules, launch scripts and other files required for running your package
+    \end{itemize}
+    \item CMakeLists.txt
+    \begin{itemize}
+      \item find\_package: find imported libraries
+      \item include\_directories: include libraries directories
+    \end{itemize}
+  \end{itemize}
+
+
+  

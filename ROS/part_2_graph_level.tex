@@ -150,9 +150,39 @@ add_excutable(node src/node.cpp)
 
 
         \subsection{Parameter Server}
+            A parameter server is a shared, multi-variate dictionary implemented using XMLRPC. Nodes can use this server to store and retrieve parameters runtime, for static, non-binary data.
+            Supported types:
+            \begin{itemize}
+                \item strings
+                \item 32-bit integers
+                \item doubles
+                \item float
+                \item booleans
+                \item lists of elements
+                \item dictionary
+                \item base64-encoded binary data
+                \item iso8601 dates
+            \end{itemize}
+
         
         
         \subsection{Dynamic reconfigure}
+            The dynamic reconfigure is a package providing a means to update parameters at runtime without having to restart the node.
+
+            CMakeLists.txt
+\begin{minted}[bgcolor=LightGray, fontsize=\footnotesize, baselinestretch=1.2]{xml}
+generate_dynamic_reconfigure_options(
+    cfg/dynamic.cfg
+)
+\end{minted}
+
+%             ## CMakeLists.txt
+% ```
+% # Dynamic reconfigure
+% generate_dynamic_reconfigure_options(
+%   cfg/dynamic.cfg
+% )
+% ```
         
 
 
