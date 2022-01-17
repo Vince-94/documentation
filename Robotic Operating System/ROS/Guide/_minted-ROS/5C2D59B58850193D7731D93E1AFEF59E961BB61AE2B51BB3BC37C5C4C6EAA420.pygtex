@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+generate\PYGZus{}dynamic\PYGZus{}reconfigure\PYGZus{}options(
+    cfg/dynamic.cfg
+)
+\end{Verbatim}

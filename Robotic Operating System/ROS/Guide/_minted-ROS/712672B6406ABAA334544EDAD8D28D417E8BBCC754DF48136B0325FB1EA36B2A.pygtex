@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+catkin\PYGZus{}ws
+  /src
+    /pkg\PYGZus{}name
+      /config
+        file.config
+      /include
+        /pkg\PYGZus{}name
+          header.h
+      /scripts
+        node.py
+      /src
+        node.cpp
+      /launch
+        node.launch
+      /msg
+        message.msg
+      /srv
+        message.srv
+      /param
+        message.param
+      /action
+        message.action
+      package.xml
+      CMakeLists.txt
+\end{Verbatim}

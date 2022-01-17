@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} defining topic message}
+\PYG{c+c1}{\PYGZsh{} goal definition}
+\PYG{n}{goal\PYGZus{}type} \PYG{n}{goal\PYGZus{}name}
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} result definition}
+\PYG{n}{result\PYGZus{}type} \PYG{n}{result\PYGZus{}name}
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} feedback}
+\PYG{n}{feedback\PYGZus{}type} \PYG{n}{feedback\PYGZus{}name}
+\end{Verbatim}

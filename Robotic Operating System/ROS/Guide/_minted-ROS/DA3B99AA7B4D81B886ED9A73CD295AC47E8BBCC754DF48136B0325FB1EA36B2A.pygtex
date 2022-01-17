@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+include\PYGZus{}directories\PYG{o}{(}
+  include
+  \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{catkin\PYGZus{}INCLUDE\PYGZus{}DIRS}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{o}{)}
+add\PYGZus{}excutable\PYG{o}{(}node src/node.cpp\PYG{o}{)}
+\end{Verbatim}

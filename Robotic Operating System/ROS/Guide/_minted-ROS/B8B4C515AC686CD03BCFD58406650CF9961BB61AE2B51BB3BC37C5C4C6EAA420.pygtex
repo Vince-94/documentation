@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{\PYGZlt{}package} \PYG{n+na}{format=}\PYG{l+s}{\PYGZdq{}2\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+
+  \PYG{n+nt}{\PYGZlt{}name\PYGZgt{}}pkg\PYGZus{}name\PYG{n+nt}{\PYGZlt{}/name\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}version\PYGZgt{}}1.2.4\PYG{n+nt}{\PYGZlt{}/version\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}description\PYGZgt{}}pkg\PYGZus{}description\PYG{n+nt}{\PYGZlt{}/description\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}maintainer} \PYG{n+na}{email=}\PYG{l+s}{\PYGZdq{}maintainer\PYGZus{}email\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}maintainer\PYGZus{}name\PYG{n+nt}{\PYGZlt{}/maintainer\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}license\PYGZgt{}}[sw license]\PYG{n+nt}{\PYGZlt{}/license\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}url\PYGZgt{}}http://ros.org/wiki/pkg\PYGZus{}name\PYG{n+nt}{\PYGZlt{}/url\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}author\PYGZgt{}}author\PYGZus{}name\PYG{n+nt}{\PYGZlt{}/author\PYGZgt{}}
+
+  \PYG{n+nt}{\PYGZlt{}buildtool\PYGZus{}depend\PYGZgt{}}catkin\PYG{n+nt}{\PYGZlt{}/buildtool\PYGZus{}depend\PYGZgt{}}
+
+  \PYG{c+cp}{\PYGZlt{}! dependency only for building \PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}build\PYGZus{}depend\PYGZgt{}}...\PYG{n+nt}{\PYGZlt{}/build\PYGZus{}depend\PYGZgt{}}
+
+  \PYG{c+cp}{\PYGZlt{}! dependency only for building which exports a header \PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}build\PYGZus{}export\PYGZus{}depend\PYGZgt{}}...\PYG{n+nt}{\PYGZlt{}/build\PYGZus{}export\PYGZus{}depend\PYGZgt{}}
+
+  \PYG{c+cp}{\PYGZlt{}! dependency required only when running the package \PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}exec\PYGZus{}depend\PYGZgt{}}...\PYG{n+nt}{\PYGZlt{}/exec\PYGZus{}depend\PYGZgt{}}
+
+  \PYG{c+cp}{\PYGZlt{}! dependency including build\PYGZus{}depend, build\PYGZus{}export\PYGZus{}depend, exec\PYGZus{}depend \PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}depend\PYGZgt{}}...\PYG{n+nt}{\PYGZlt{}/depend\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}/package\PYGZgt{}}
+\end{Verbatim}

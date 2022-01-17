@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+/pkg\PYGZus{}name
+    /nodes
+        node.py
+    CMakeLists.txt
+    package.xml
+\end{Verbatim}

@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Informations \PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+cmake\PYGZus{}minimum\PYGZus{}required()
+project(pkg\PYGZus{}name)
+
+\PYGZsh{} Compiler
+set(CMAKE\PYGZus{}BUILD\PYGZus{}TYPE \PYGZdq{}Release\PYGZdq{})
+include(CheckCXXCompilerFlag)
+CHECK\PYGZus{}CXX\PYGZus{}COMPILER\PYGZus{}FLAG(\PYGZdq{}\PYGZhy{}std=c++11\PYGZdq{} COMPILER\PYGZus{}SUPPORTS\PYGZus{}CXX11)
+CHECK\PYGZus{}CXX\PYGZus{}COMPILER\PYGZus{}FLAG(\PYGZdq{}\PYGZhy{}std=c++14\PYGZdq{} COMPILER\PYGZus{}SUPPORTS\PYGZus{}CXX14)
+
+if(COMPILER\PYGZus{}SUPPORTS\PYGZus{}CXX14)
+    set(CMAKE\PYGZus{}CXX\PYGZus{}FLAGS \PYGZdq{}\PYGZhy{}std=c++14\PYGZdq{})
+elseif(COMPILER\PYGZus{}SUPPORTS\PYGZus{}CXX11)
+    set(CMAKE\PYGZus{}CXX\PYGZus{}FLAGS \PYGZdq{}\PYGZhy{}std=c++11\PYGZdq{})
+else()
+    message(FATAL\PYGZus{}ERROR \PYGZdq{}No C++11 support\PYGZdq{})
+endif()
+
+set(CMAKE\PYGZus{}CXX\PYGZus{}FLAGS\PYGZus{}RELEASE \PYGZdq{}\PYGZhy{}O3 \PYGZhy{}Wall \PYGZhy{}g\PYGZdq{})
+
+
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Dependencies \PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYGZsh{} Find ROS package dependency (\PYG{n+nt}{\PYGZlt{}depend\PYGZgt{}}/\PYG{n+nt}{\PYGZlt{}build\PYGZus{}depend\PYGZgt{}} in package.xml)
+find\PYGZus{}package(catkin REQUIRED COMPONENTS
+  rospy
+  roscpp
+  ...
+)
+
+
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Catkin specific configuration \PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
+\PYGZsh{} Libraries and headers needed by all the interfaces you export to other
+\PYGZsh{} ROS packages (\PYG{n+nt}{\PYGZlt{}depend\PYGZgt{}}/\PYG{n+nt}{\PYGZlt{}build\PYGZus{}export\PYGZus{}depend\PYGZgt{}} in package.xml)
+catkin\PYGZus{}package(
+  DEPENDS rospy roscpp ...
+  CATKIN\PYGZus{}DEPENDS rospy roscpp ...
+)
+
+\PYGZsh{} Header directories
+include\PYGZus{}directories(
+  include
+  \PYGZdl{}\PYGZob{}catkin\PYGZus{}INCLUDE\PYGZus{}DIRS\PYGZcb{}
+)
+\end{Verbatim}

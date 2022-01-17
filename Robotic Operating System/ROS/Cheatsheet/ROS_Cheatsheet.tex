@@ -1,0 +1,50 @@
+\documentclass[9pt,a4paper]{article}
+
+
+\input{settings.tex}
+
+
+
+
+\begin{document}
+
+  \setlength\parindent{0pt}
+
+  \begin{center}
+    \textbf{\Large Title Cheats Sheet}
+  \end{center}
+
+  \begin{multicols*}{3}[]
+
+  \hrulefill
+
+  \textbf{Command Line Interface}
+
+  \hrulefill
+
+  \terminal{ros2 \clicmd{command} [tab][tab]}
+
+  \hrulefill
+
+  Link: \href{https://github.com/ros2/demos}{ROS 2 demos package}.
+
+  \hrulefill
+
+  \clicmd{action} explanation.
+
+  \hrulefill
+
+  Verbs:
+  \\
+  \begin{tabularx}{\linewidth}{lX}
+    \smallhspace \cliverb{info}        & Output information about an action. \\
+  \end{tabularx}
+
+  \hrulefill
+
+  \clicmd{msg} \deprecated~Displays debugging information about messages.
+
+
+  \end{multicols*}
+  
+\end{document}

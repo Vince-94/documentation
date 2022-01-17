@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} defining request message}
+\PYG{n}{request\PYGZus{}type} \PYG{n}{request\PYGZus{}name}
+\PYG{o}{\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} defining response message}
+\PYG{n}{response\PYGZus{}type} \PYG{n}{response\PYGZus{}name}
+\end{Verbatim}

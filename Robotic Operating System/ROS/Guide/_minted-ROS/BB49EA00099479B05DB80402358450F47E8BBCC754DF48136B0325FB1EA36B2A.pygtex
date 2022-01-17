@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+find\PYGZus{}package\PYG{o}{(}catkin REQUIRED COMPONENTS
+  rospy
+  roscpp
+  message\PYGZus{}generation
+  actionlib\PYGZus{}msgs
+\PYG{o}{)}
+
+\PYG{c+c1}{\PYGZsh{} Messages data structure}
+add\PYGZus{}message\PYGZus{}files\PYG{o}{(}
+  DIRECTORY msg
+  FILES message.msg
+\PYG{o}{)}
+
+\PYG{c+c1}{\PYGZsh{} Services data structure}
+add\PYGZus{}service\PYGZus{}files\PYG{o}{(}
+  DIRECTORY srv
+  FILES message.srv
+\PYG{o}{)}
+
+\PYG{c+c1}{\PYGZsh{} Actions data structure}
+add\PYGZus{}action\PYGZus{}files\PYG{o}{(}
+  DIRECTORY action
+  FILES massage.action
+\PYG{o}{)}
+
+generate\PYGZus{}messages\PYG{o}{(}
+  DEPENDENCIES ...
+  actionlib\PYGZus{}msgs
+\PYG{o}{)}
+
+catkin\PYGZus{}package\PYG{o}{(}
+  CATKIN\PYGZus{}DEPENDS rospy roscpp message\PYGZus{}runtime actionlib\PYGZus{}msgs
+\PYG{o}{)}
+\end{Verbatim}

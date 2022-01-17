@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+/pkg\PYGZus{}name
+    /src
+        node.cpp
+    /include
+        node.h
+    CMakeLists.txt
+    package.xml
+\end{Verbatim}

@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+catkin\PYGZus{}ws
+  /src
+    /pkg\PYGZus{}name
+      /msg
+        message.msg
+      /srv
+        message.srv
+      /param
+        message.param
+      /action
+        message.action
+      package.xml
+      CMakeLists.txt
+\end{Verbatim}
