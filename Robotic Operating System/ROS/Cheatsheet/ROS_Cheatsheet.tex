@@ -11,38 +11,140 @@
   \setlength\parindent{0pt}
 
   \begin{center}
-    \textbf{\Large Title Cheats Sheet}
+    \textbf{\LARGE ROS cheatsheet}
   \end{center}
 
   \begin{multicols*}{3}[]
 
-  \hrulefill
 
-  \textbf{Command Line Interface}
+  % ! Introduction
+  \textbf{\large Introduction}
 
-  \hrulefill
-
-  \terminal{ros2 \clicmd{command} [tab][tab]}
+  \terminal{\clicmd{command} \cliverb{verb} \cliopt{option}}
 
   \hrulefill
 
-  Link: \href{https://github.com/ros2/demos}{ROS 2 demos package}.
+
+  % ! Executables
+  \textbf{\large Executables}
+
+  \clicmd{rosrun} run an executable in an arbitrary package
+  
+    \terminal{rosrun pkg exec}
+  
+
+
+  \clicmd{roslaunch} run a launch file in an arbitrary packages
+
+    \terminal{roslaunch pkg file.launch}
+
+
+
+
+  \clicmd{rosnode} debugging information about nodes
+
+    \terminal{rosnode \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{lX}
+      \cliverb{info} \cliopt{node} \\
+      \smallhspace information about a node \\
+      \cliverb{list} \\
+      \smallhspace list of available nodes \\
+    \end{tabularx}
+    \vspace{0.2cm}
+    
+
 
   \hrulefill
 
-  \clicmd{action} explanation.
 
-  \hrulefill
 
-  Verbs:
-  \\
-  \begin{tabularx}{\linewidth}{lX}
-    \smallhspace \cliverb{info}        & Output information about an action. \\
-  \end{tabularx}
 
-  \hrulefill
+  % ! Interface management
+  \textbf{\large Interface management}
 
-  \clicmd{msg} \deprecated~Displays debugging information about messages.
+  \clicmd{rostopic} topic interface
+
+    \terminal{rostopic \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{list}  &                               & list of active topics \\
+      \cliverb{info}  & \cliopt{topic}                & topic info \\
+      \cliverb{echo}  & \cliopt{topic}                & echo of topic data \\
+      \cliverb{hz}    & \cliopt{topic}                & topic data rate \\
+      \cliverb{bw}    & \cliopt{topic}                & topic bandwidth \\
+      \cliverb{delay} & \cliopt{topic}                & topic delay from timestamp \\
+      \cliverb{type}  & \cliopt{topic}                & topic's data type \\
+      \cliverb{find}  & \cliopt{msgs}                 & find topics of a given data type \\
+      \cliverb{pub}   & \cliopt{msgs} \cliopt{data}   & publish data to a topic \\
+    \end{tabularx}
+    \vspace{0.2cm}
+
+
+
+  \clicmd{rosservice} service interface
+
+    \terminal{rosservice \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{list}  &                               & list of active service \\
+      \cliverb{type}  & \cliopt{service}              & service's data type \\
+      \cliverb{find}  & \cliopt{service}              & list of services of a given type \\
+      \cliverb{call}  & \cliopt{srvs} \cliopt{data}   & call a service \\
+    \end{tabularx}
+    \vspace{0.2cm}
+
+
+
+
+  \clicmd{rosparam} parameter interface
+
+    \terminal{rosparam \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{list}        &                                 & list of available parameters \\
+      \cliverb{describe}    & \cliopt{param}                  & parameter info \\
+      \cliverb{get}         & \cliopt{param}                  & get parameter \\
+      \cliverb{set}         & \cliopt{param} \cliopt{data}    & set parameter \\
+      \cliverb{delete}      & \cliopt{param}                  & delete parameter \\
+      \cliverb{dump}        & \cliopt{param} \cliopt{data}    & dump parameter of a node in yaml, file or terminal \\
+    \end{tabularx}
+    \vspace{0.2cm}
+
+
+
+  \clicmd{rosbag} Allows to record/play topics to/from a rosbag.
+
+    \terminal{rosbag \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{info}        &                           & bag info \\
+      \cliverb{record}      & \cliopt{bag\_name}         & record a bag \\
+      \cliverb{play}        & \cliopt{bag\_name}         & play a bag \\
+    \end{tabularx}
+    \vspace{0.2cm}
+
+
+
+  % ! Diagnostics
+
+  \clicmd{roswtf} Check ROS setup and other potential issues
+
+    \terminal{roswtf}
+
+    \vspace{0.5cm}
+
+
+
+  % ! Interface management
+
+  \textbf{\large Building Tool}
+
+  \clicmd{catkin-tools}
+
+    \terminal{catkin \cliverb{build}}
+
+
 
 
   \end{multicols*}

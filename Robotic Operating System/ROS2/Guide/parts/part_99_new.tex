@@ -1,0 +1,64 @@
+\part{ROS2 Graph}
+
+  The ROS graph is a network of ROS2 elements processing data 
+  together at one time.
+
+
+  \section*{Nodes}
+    Each node in ROS should be responsible for a single task (single, modular purpose).
+    There are many ways by which nodes can exchange data each 
+    others: topics, services, actions, or parameters.
+
+
+  \section*{Topics}
+    Topics allows to send continuous streams of data between
+    two or more topics:
+    \begin{itemize}
+      \item publisher: if data is sent (publish to a topic)
+      \item subscriber: if data is received (subscribe to a topic)
+    \end{itemize}
+
+
+  \section*{Services}
+    Services are based on call-and-response model, providing data
+    only under request by a client:
+    \begin{itemize}
+      \item service server: who provides the service (response)
+      \item service client: who call the service (request)
+    \end{itemize}
+
+
+  \section*{Parameters}
+    Parameters are configuration values of a node, corresponding
+    to passing arguments to an executable.
+
+
+  \section*{Actions}
+    Actions are an advance way to exchange data for long running
+    tasks, using the client-server model of the topics and 
+    the call-and-response model of services, with the difference 
+    that can be deleted.
+    \begin{itemize}
+      \item goal service: service request
+      \item feedback topic: data about the state of the task
+      \item result service: service result
+    \end{itemize}
+
+
+
+
+
+\part{Client Libraries}
+
+
+
+  \begin{tabularx}{\linewidth}{| l | l | l |}
+    / & rclcpp & rclpy \\
+    / & rclcpp::ok() & / \\
+    / & rclcpp::WallRate & / \\
+  \end{tabularx}
+
+
+
+
+  

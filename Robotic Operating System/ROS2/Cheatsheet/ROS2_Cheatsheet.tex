@@ -1,6 +1,5 @@
 \documentclass[9pt,a4paper]{article}
 
-
 \input{settings.tex}
 
 
@@ -11,38 +10,364 @@
   \setlength\parindent{0pt}
 
   \begin{center}
-    \textbf{\Large Title Cheats Sheet}
+    \textbf{\LARGE ROS2 cheatsheet}
   \end{center}
 
   \begin{multicols*}{3}[]
 
   \hrulefill
 
-  \textbf{Command Line Interface}
+  % ! Command Line Interface
+  \textbf{\large Introduction}
+
+    \terminal{ros2 \clicmd{command} \cliverb{verb} \cliopt{option}}
+
+    \hrulefill
+
+
+  % ! Command Line Interface
+  \textbf{\large Executables}
+
+  \clicmd{run} run an executable in an arbitrary package
+  
+    \terminal{ros2 run pkg exec}
+  
+  \clicmd{launch} run a launch file in an arbitrary packages
+
+    \terminal{ros2 launch pkg file.launch.py}
+
+    \terminal{ros2 launch pkg file.launch}
+    
+    \terminal{ros2 launch pkg file.launch.yaml}
+    
+
+    
+  \clicmd{component} manage components
+
+    \terminal{ros2 component \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{lX}
+      \cliverb{list} \\
+      \smallhspace list of running containers and components \\
+      \cliverb{load /ComponentManager} \cliopt{cnt} \cliopt{ns::cmp} cnt ns::cmp\\
+      \smallhspace load a component into a container node \\
+      \cliverb{unload /ComponentManager} \cliopt{1} \\
+      \smallhspace unload a component from a container node \\
+      \cliverb{standalone} \\
+      \smallhspace run a component into its own standalone container node \\
+      \cliverb{types} \\
+      \smallhspace list of components registered in the ament index \\
+    \end{tabularx}
+    \vspace{0.5cm}
+
+
 
   \hrulefill
 
-  \terminal{ros2 \clicmd{command} [tab][tab]}
 
-  \hrulefill
+  % ! Package management
+  \textbf{\large Package management}
 
-  Link: \href{https://github.com/ros2/demos}{ROS 2 demos package}.
+  \clicmd{pkg} create and manage ros2 package
 
-  \hrulefill
+  \terminal{ros2 pkg \cliverb{verb}}
 
-  \clicmd{action} explanation.
+  \begin{tabularx}{\linewidth}{lX}
+    \cliverb{create} \\
+    \smallhspace create a new ROS2 package \\
+    \cliverb{executables} \cliopt{pkg} \\
+    \smallhspace list of package specific executables \\
+    \cliverb{list} \\
+    \smallhspace list of available packages \\
+    \cliverb{prefix} \cliopt{pkg}\\
+    \smallhspace prefix path of a package \\
+    \cliverb{xml} \cliopt{-t version} \\
+    \smallhspace information contained in the package xml manifest \\
+  \end{tabularx}
+  \vspace{0.5cm}
 
-  \hrulefill
 
+  \clicmd{node} debugging information about nodes
+
+  \terminal{ros2 node \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{lX}
+    \cliverb{info} \cliopt{node} \\
+    \smallhspace information about a node \\
+    \cliverb{list} \\
+    \smallhspace list of available nodes \\
+  \end{tabularx}
+  \vspace{0.5cm}
+  
+\hrulefill
+
+
+  % ! Interface management
+  \textbf{\large Interface management}
+
+  \clicmd{topic} topic interface
+
+  \terminal{ros2 topic \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{llXl}
+    \cliverb{list}  &                               & list of active topics \\
+    \cliverb{info}  & \cliopt{topic}                & topic info \\
+    \cliverb{echo}  & \cliopt{topic}                & echo of topic data \\
+    \cliverb{hz}    & \cliopt{topic}                & topic data rate \\
+    \cliverb{bw}    & \cliopt{topic}                & topic bandwidth \\
+    \cliverb{delay} & \cliopt{topic}                & topic delay from timestamp \\
+    \cliverb{type}  & \cliopt{topic}                & topic's data type \\
+    \cliverb{find}  & \cliopt{msgs}                 & find topics of a given data type \\
+    \cliverb{pub}   & \cliopt{msgs} \cliopt{data}   & publish data to a topic \\
+  \end{tabularx}
+  \vspace{0.5cm}
+
+
+
+  \clicmd{service} service interface
+
+  \terminal{ros2 service \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{llXl}
+    \cliverb{list}  &                               & list of active service \\
+    \cliverb{type}  & \cliopt{service}              & service's data type \\
+    \cliverb{find}  & \cliopt{service}              & list of services of a given type \\
+    \cliverb{call}  & \cliopt{srvs} \cliopt{data}   & call a service \\
+  \end{tabularx}
+  \vspace{0.5cm}
+
+
+
+  \clicmd{action} action interface
+
+  \terminal{ros2 action \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{llXl}
+    \cliverb{list}        &                               & list of active action \\
+    \cliverb{show}        & \cliopt{action}               & action definition \\
+    \cliverb{info}        & \cliopt{action}               & information about an action \\
+    \cliverb{send\_goal}  & \cliopt{act} \cliopt{"data"}  & send action goal \\
+  \end{tabularx}
+  \vspace{0.5cm}
+
+
+  \clicmd{param} parameter interface
+
+  \terminal{ros2 param \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{llXl}
+    \cliverb{list}        &                                 & list of available parameters \\
+    \cliverb{describe}    & \cliopt{param}                  & parameter info \\
+    \cliverb{get}         & \cliopt{param}                  & get parameter \\
+    \cliverb{set}         & \cliopt{param} \cliopt{data}    & set parameter \\
+    \cliverb{delete}      & \cliopt{param}                  & delete parameter \\
+    \cliverb{dump}        & \cliopt{param} \cliopt{data}    & dump parameter of a node in yaml, file or terminal \\
+  \end{tabularx}
+  \vspace{0.5cm}
+
+
+
+  \clicmd{interface} interface (actions/topics/services) commands
+
+  \terminal{ros2 interface \cliverb{verb}}
+
+  \begin{tabularx}{\linewidth}{llXl}
+    \cliverb{list}        &                               & list all interface types available \\
+    \cliverb{show}        & \cliopt{msg}                  & interface definition \\
+    \cliverb{proto}       & \cliopt{msg}                  & prototype (body) of an interfaces \\
+    \cliverb{package}     & \cliopt{pkg}                  & list of available interface types within one package \\
+    \cliverb{packages}    & \cliopt{\ddash only-msgs}     & \multirow{3}{\hsize}{list of packages that provide interfaces} \\
+                          & \cliopt{\ddash only-srvs}     &  \\
+                          & \cliopt{\ddash only-actions}  &  \\
+  \end{tabularx}
+  
+  \vspace{0.5cm}
+
+  \clicmd{bag} Allows to record/play topics to/from a rosbag.
+
+    \terminal{ros2 bag \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{info}        &                           & bag info \\
+      \cliverb{record}      & \cliopt{bag\_name}         & record a bag \\
+      \cliverb{play}        & \cliopt{bag\_name}         & play a bag \\
+    \end{tabularx}
+    \vspace{0.5cm}
+
+
+
+  % ! Diagnostics
+  \textbf{\large Diagnostics}
+
+  \clicmd{lifecycle} Lifecycle CLI
+
+    \terminal{ros2 lifecycle \cliverb{verb}}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{list}     &                    & list of available transitions \\
+      \cliverb{nodes}    &                    & list of nodes with lifecycle \\
+      \cliverb{get}      & \cliopt{node}      & get node lifecycle state \\
+      \cliverb{set}      & \cliopt{??}        & trigger lifecycle state transition \\
+    \end{tabularx}
+    \vspace{0.5cm}
+
+
+
+  \clicmd{doctor} Check ROS setup and other potential issues
+
+    \terminal{ros2 doctor}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliopt{-r}     & report of all checks \\
+      \cliopt{-rd}    & report of failed checks only \\
+      \cliopt{-iw}    & report with warnings as failed checks \\
+    \end{tabularx}
+    \vspace{0.5cm}
+
+
+
+    \clicmd{test} Run ROS2 launch test
+
+    \terminal{ros2 test}
+
+
+    \hrulefill
+
+
+  % ! Various
+  \textbf{\large Various}
+
+
+  \clicmd{daemon} Deamon CLI
+
+    \terminal{ros2 daemon}
+
+    \begin{tabularx}{\linewidth}{llXl}
+      \cliverb{start}     & start the daemon if it isn't running \\
+      \cliverb{status}    & status of the daemon \\
+      \cliverb{stop}      & stop the daemon if it is running \\
+    \end{tabularx}
+    \vspace{0.5cm}
+
+
+
+
+
+  \clicmd{multicast} Various multicast related verbs.
+  \\
   Verbs:
   \\
   \begin{tabularx}{\linewidth}{lX}
-    \smallhspace \cliverb{info}        & Output information about an action. \\
+  \smallhspace \cliverb{receive}   &  Receive a single UDP multicast packet. \\
+  \smallhspace \cliverb{send}      &  Send a single UDP multicast packet.
   \end{tabularx}
+  %
+
+  % =================================
+
+  \clicmd{extension\_points} List extension points.
+  %
+
+  % =================================
+
+  %
+  \clicmd{extensions} List extensions.
+  %
+
+  % =================================
+
+
+
+
+  \clicmd{security} Various security related verbs.
+  \\
+  Verbs:
+  \\
+  %
+  \begin{tabularx}{\linewidth}{lX}
+  \smallhspace \cliverb{create\_key}            & Create key.                                  \\
+  \smallhspace \cliverb{create\_permission}     & Create keystore.                             \\
+  \smallhspace \cliverb{generate\_artifacts}    & Create permission.                           \\
+  \smallhspace \cliverb{list\_keys}             & Distribute key.                              \\
+  \smallhspace \cliverb{create\_keystore}       & Generate keys and permission
+  files from a list of identities and policy files.                                               \\
+  \smallhspace \cliverb{distribute\_key}        & Generate XML policy file from ROS graph data.\\
+  \smallhspace \cliverb{generate\_policy}       & List keys.
+  \end{tabularx}
+  %
+  Examples (see \href{https://github.com/ros2/sros2}{sros2 package}):
+  \\
+  \terminal{ros2 security create\_key demo\_keys /talker}   \\
+  \terminal{ros2 security create\_permission demo\_keys /talker
+  \terminalinebreak~policies/sample\_policy.xml} \\
+  \terminal{ros2 security generate\_artifacts} \\
+  %\terminal{ros2 security list\_keys} \\
+  \terminal{ros2 security create\_keystore demo\_keys}
+  %\terminal{ros2 security distribute\_key} \\
+  %\terminal{ros2 security generate\_policy}
+
+  % =================================
+
+  \vspace{0.5cm}
 
   \hrulefill
 
-  \clicmd{msg} \deprecated~Displays debugging information about messages.
+  % ! Building Tool
+  \textbf{\large Building Tool}
+
+  \clicmd{colcon} run an executable in an arbitrary package
+  
+    \terminal{colcon \cliverb{build}}
+  
+    \terminal{colcon \cliverb{info}}
+
+    \terminal{colcon \cliverb{list}}
+
+    \terminal{colcon \cliverb{metadata}}
+
+    \terminal{colcon \cliverb{test}}
+
+    \terminal{colcon \cliverb{test-result}}
+
+    \terminal{colcon \cliverb{version-check}}
+
+    \terminal{colcon \cliverb{extension-point}}
+
+    \terminal{colcon \cliverb{extensions}}
+
+
+
+
+  \hrulefill
+
+
+  % ! ROS2 workspace
+  \textbf{\large ROS2 workspace}
+
+  Creating workspace:
+
+
+    \terminal{source /opt/ros/\$\{ROS\_DISTRO\}/setup.bash}
+
+    % \terminal{echo "source /opt/ros/\$\{ROS\_DISTRO\}/setup.bash" >> ~/.bashrc}
+
+    \terminal{mkdir -p $\sim$/ros2\_ws/src}
+    
+    \terminal{cd $\sim$/ros2\_ws/src}
+
+    \terminal{rosdep install -i \ddash from-path src \ddash rosdistro ROS\_DISTRO}
+
+    \terminal{colcon build}
+
+    \terminal{source /opt/ros/ROS\_DISTRO/setup.bash}
+
+    \terminal{source /opt/ros/ROS\_DISTRO/setup.bash}
+
+    % echo "source /opt/ros/rolling/setup.bash" >> ~/.bashrc
+
+    % printenv | grep -i ROS
+
+    % echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
 
 
   \end{multicols*}
