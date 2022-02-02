@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{Node}\PYG{o}{::}\PYG{n}{SharedPtr} \PYG{n}{node} \PYG{o}{=} \PYG{p}{...}
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{spin}\PYG{p}{(}\PYG{n}{node}\PYG{p}{);}
+\end{Verbatim}

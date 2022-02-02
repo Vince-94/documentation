@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{Node}\PYG{o}{::}\PYG{n}{SharedPtr} \PYG{n}{node1} \PYG{o}{=} \PYG{p}{...}
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{Node}\PYG{o}{::}\PYG{n}{SharedPtr} \PYG{n}{node2} \PYG{o}{=} \PYG{p}{...}
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{Node}\PYG{o}{::}\PYG{n}{SharedPtr} \PYG{n}{node3} \PYG{o}{=} \PYG{p}{...}
+
+  \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{executors}\PYG{o}{::}\PYG{n}{StaticSingleThreadedExecutor} \PYG{n}{executor}\PYG{p}{;}
+  \PYG{n}{executor}\PYG{p}{.}\PYG{n}{add\PYGZus{}node}\PYG{p}{(}\PYG{n}{node1}\PYG{p}{);}
+  \PYG{n}{executor}\PYG{p}{.}\PYG{n}{add\PYGZus{}node}\PYG{p}{(}\PYG{n}{node2}\PYG{p}{);}
+  \PYG{n}{executor}\PYG{p}{.}\PYG{n}{add\PYGZus{}node}\PYG{p}{(}\PYG{n}{node2}\PYG{p}{);}
+  \PYG{n}{executor}\PYG{p}{.}\PYG{n}{spin}\PYG{p}{();}
+\end{Verbatim}

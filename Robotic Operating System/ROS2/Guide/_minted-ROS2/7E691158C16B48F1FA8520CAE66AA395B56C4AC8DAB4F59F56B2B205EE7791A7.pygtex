@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+      \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{Node}\PYG{o}{::}\PYG{n}{SharedPtr} \PYG{n}{node} \PYG{o}{=} \PYG{p}{...}
+
+      \PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{executors}\PYG{o}{::}\PYG{n}{SingleThreadedExecutor} \PYG{n}{executor}\PYG{p}{;}
+      \PYG{n}{executor}\PYG{p}{.}\PYG{n}{add\PYGZus{}node}\PYG{p}{(}\PYG{n}{node}\PYG{p}{);}
+      \PYG{n}{executor}\PYG{p}{.}\PYG{n}{spin}\PYG{p}{();}
+\end{Verbatim}

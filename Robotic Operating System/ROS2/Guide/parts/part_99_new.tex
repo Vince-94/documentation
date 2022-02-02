@@ -1,48 +1,149 @@
-\part{ROS2 Graph}
-
-  The ROS graph is a network of ROS2 elements processing data 
-  together at one time.
 
 
-  \section*{Nodes}
-    Each node in ROS should be responsible for a single task (single, modular purpose).
-    There are many ways by which nodes can exchange data each 
-    others: topics, services, actions, or parameters.
+
+\part{Concepts}
 
 
-  \section*{Topics}
-    Topics allows to send continuous streams of data between
-    two or more topics:
+\section*{Execution strategies}
+  Since ROS2 is a system that deals with asynchronous events (such as timers, Subscriptions, service servers, service cleints, QoS events), it is crucial understanding how to wait for these events, when deciding to act, in what the order of execution. 
+  \\
+  \\
+  There are two approaches that are used: Proactor and Reactor.
+
+  \begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}[t]{|l|X|X|}
+      \hline
+      & \centering Proactor & \centering\arraybackslash Reactor \\
+      \hline
+      Implementation  & ROS2 Executor & ROS2 WaitSet \\
+      \hline
+      Description     & wait for the read/wait to be completed & wait for the read/wait to be ready \\
+      \hline
+      Scheduling      & built-in & handled by user \\
+      \hline
+    \end{tabularx}
+  \end{table}
+
+  This can be translated into using Executor (Proactor) or WaitSet (Reator):
+
+  \begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}[t]{|l|X|X|}
+      \hline
+      & \centering Executor & \centering\arraybackslash WaitSet \\
+      \hline
+      Use case & Extreme latency performance & Safety and mission critical system \\
+      \hline
+      Throughput & Low & High \\
+      \hline
+      Latency & Low & High \\
+      \hline
+      CPU utilization & High & Low \\
+      \hline
+    \end{tabularx}
+  \end{table}
+
+
+
+
+  \subsection*{Executors}
+
+    An executor uses threads to invoke callbacks (subscribers, timers, services, actions, ...).
+
     \begin{itemize}
-      \item publisher: if data is sent (publish to a topic)
-      \item subscriber: if data is received (subscribe to a topic)
+      \item \textbf{Single-threaded executor}: the main thread is used for processing incoming messages and events of a node, through "spin(node)" method. The scheduling is barely the round-robin in the blocking spin call (in the thread in which you call spin).
+
+        \begin{minted}[bgcolor=LightGray]{cpp}
+  rclcpp::Node::SharedPtr node = ...
+  rclcpp::spin(node);
+        \end{minted}
+
+        which is the same as:
+
+        \begin{minted}[bgcolor=LightGray]{cpp}
+  rclcpp::Node::SharedPtr node = ...
+
+  rclcpp::executors::SingleThreadedExecutor executor;
+  executor.add_node(node);
+  executor.spin();
+        \end{minted}
+
+      \item \textbf{Multi-threaded executor}: creates a configurable number of threads for parallelism. The actual parallelism depends on the callback groups.
+        \begin{minted}[bgcolor=LightGray]{cpp}
+  rclcpp::Node::SharedPtr node = ...
+
+  rclcpp::executors::MultiThreadedExecutor executor;
+  executor.add_node(node);
+  executor.spin();
+      \end{minted}
+
+      \item \textbf{Static-single-threaded executor}: enhanced version of the single-threaded executor which optimizes the runtime cost.
+        \begin{minted}[autogobble, bgcolor=LightGray]{cpp}
+  rclcpp::Node::SharedPtr node1 = ...
+  rclcpp::Node::SharedPtr node2 = ...
+  rclcpp::Node::SharedPtr node3 = ...
+
+  rclcpp::executors::StaticSingleThreadedExecutor executor;
+  executor.add_node(node1);
+  executor.add_node(node2);
+  executor.add_node(node2);
+  executor.spin();
+        \end{minted}
+
     \end{itemize}
 
 
-  \section*{Services}
-    Services are based on call-and-response model, providing data
-    only under request by a client:
+    \paragraph*{Issues} The three executors suffer from different issues, making them not suitable for real-time applications:
     \begin{itemize}
-      \item service server: who provides the service (response)
-      \item service client: who call the service (request)
+      \item mixing different scheduler
+      \item priority inversion may happen in callbacks
+      \item no explicit control over callback execution order
     \end{itemize}
 
 
-  \section*{Parameters}
-    Parameters are configuration values of a node, corresponding
-    to passing arguments to an executable.
+    \paragraph*{Components} The Single-threaded executor is used by components in order to create multiple single-threaded executors, which is a single node that has a  single thread for each process.
 
 
-  \section*{Actions}
-    Actions are an advance way to exchange data for long running
-    tasks, using the client-server model of the topics and 
-    the call-and-response model of services, with the difference 
-    that can be deleted.
-    \begin{itemize}
-      \item goal service: service request
-      \item feedback topic: data about the state of the task
-      \item result service: service result
-    \end{itemize}
+
+
+  \subsection*{WaitSet}
+    WaitSet allows to implement the "reactor" behaviour, which allows waiting directly o callbacks, instead of using Executor.
+    It makes possible to implement deterministic, user-defined processing sequences, possibly processing multiple messages from different sources together.
+
+    \paragraph*{Scheduling} Scheduling strategy in this pattern is all up to the user.
+
+    \paragraph*{Issues} At the moment, the interface to implement the WaitSet makes use of the callback, even though there is no call.
+
+
+
+
+
+\section*{Callback groups}
+  Callbacks node can be organized in a \textbf{Callback Group}, which determines the behaviour of the callbacks 
+  inside of that group, without dealing with the threading 
+  models.
+
+  The callback group types are:
+  \begin{itemize}
+    \item \textbf{\textit{mutually exclusive}}: ensure that the callbacks in it, will never be executed at the same time by the executor, preventing to use the same shared resources (race condition)
+    \item \textbf{\textit{reentrant}}: makes possible that a callback be called at the same time as other callbacks, and furthermore it can be called multiple times concurrently
+  \end{itemize}
+
+  Callbacks of different callback group can be always executed in parallel.
+
+
+
+
+\section*{Components}
+
+
+
+\section*{Quality of Service}
+
+
+
+\section*{Lifecycle}
 
 
 
