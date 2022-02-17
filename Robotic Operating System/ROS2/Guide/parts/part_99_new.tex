@@ -5,7 +5,7 @@
 
 
 \section*{Execution strategies}
-  Since ROS2 is a system that deals with asynchronous events (such as timers, Subscriptions, service servers, service cleints, QoS events), it is crucial understanding how to wait for these events, when deciding to act, in what the order of execution. 
+  Since ROS2 is a system that deals with asynchronous events (such as timers, subscribers, service servers, service cleints, QoS events), it is crucial understanding how to wait for these events, when deciding to act, in what the order of execution. 
   \\
   \\
   There are two approaches that are used: Proactor and Reactor.
@@ -25,7 +25,7 @@
     \end{tabularx}
   \end{table}
 
-  This can be translated into using Executor (Proactor) or WaitSet (Reator):
+  This can be translated into using Executor (Proactor) or WaitSet (Reactor):
 
   \begin{table}[htbp]
     \centering
